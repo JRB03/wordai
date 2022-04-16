@@ -1,8 +1,6 @@
 import './style/App.css';
 import { useState, useEffect } from 'react';
 
-import Module from './components/Module.js';
-
 import words from './pop/words.js';
 
 function App() {
@@ -64,7 +62,7 @@ function App() {
   
 
   const changeColor = (l) => {
-    
+
   };
 
   return (
