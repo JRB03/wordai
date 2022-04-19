@@ -164,7 +164,7 @@ function App() {
             </div>
           </div>
           <div id='exb'>
-            <label>ex:</label>
+            <label>exc:</label>
             <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
           </div>
       </div>
