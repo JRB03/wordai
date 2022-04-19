@@ -16,8 +16,31 @@ function App() {
 
   const [list,setList] = useState(words);
 
+  let elements = [];
+  elements.push(document.getElementById('in1'));
+  elements.push(document.getElementById('in2'));
+  elements.push(document.getElementById('in3'));
+  elements.push(document.getElementById('in4'));
+  elements.push(document.getElementById('in5'));
+  elements.push(document.getElementById('ex'));
+  
+  const tabRight = () => {
+    let i = elements.indexOf(document.activeElement);
+    if(i >= elements.length-1) i = -1;
+    elements[i + 1].focus();
+  }
+  const tabLeft = () => {
+    let i = elements.indexOf(document.activeElement);
+    if(i <= 0) i = elements.length;
+    elements[i - 1].focus();
+  }
+
   const updateLetter = (l,e) => {
-        if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
+    if(e.key === 'Enter') {
+      updateColor(l);
+      return;
+    }
+    if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
     switch(l) {
       case 1:
         if(e.key === 'Backspace') setL1({c:l1.c,l:' '});
@@ -29,7 +52,7 @@ function App() {
         break;
       case 3:
         if(e.key === 'Backspace') setL3({c:l3.c,l:' '});
-        else setL3({c:l1.c,l:e.key});
+        else setL3({c:l3.c,l:e.key});
         break;
       case 4:
         if(e.key === 'Backspace') setL4({c:l4.c,l:' '});
@@ -44,6 +67,7 @@ function App() {
           setNot(not.filter((_,i) => i !== not.length-1))
         }
         else if(!not.includes(e.key)) setNot([...not,e.key]);
+        else return;
         break;
     }
     setList(words);
@@ -80,6 +104,11 @@ function App() {
     }
     setList(words);
   }
+  const setColor = (c) => {
+    if(c.l === ' ' || c.c === 0) return '#afafaf';
+    if(c.c === 1) return '#eed494';
+    if(c.c === 2) return '#9ac8b7';
+    };
 
   useEffect(() => {
     //update list
@@ -108,32 +137,33 @@ function App() {
     for(let i = 0; i <=5; i++) setColor(i);
   },[l1,l2,l3,l4,l5,not]);
   
-
-  const setColor = (c) => {
-  if(c.l === ' ' || c.c === 0) return '#8f8c8c';
-  if(c.c === 1) return '#eed494';
-  if(c.c === 2) return '#9ac8b7';
-  };
-  
   useEffect(() => {
     if(not.length <= 2) setExwidth('30px');
     else setExwidth('fit-content')
   },[not])
-  
 
   return (
-    <div>
+    <div class='wordaI' onKeyDown={e => {
+      if(e.key === 'ArrowRight') tabRight();
+      if(e.key === 'ArrowLeft') tabLeft();
+    }}>
+      <div id='header'>
+        <h2></h2>
+        <h1>Word.aI</h1>
+        <b></b>
+      </div>
       <div className='boxes'>
-        <p className='input' tabIndex='1' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
-        <p className='input' tabIndex='2' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
-        <p className='input' tabIndex='3' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
-        <p className='input' tabIndex='4' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
-        <p className='input' tabIndex='5' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
-        <p className='exclude' tabIndex='6' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
+        <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
+        <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
+        <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
+        <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
+        <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
+        
+        <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
       </div>
 
       <div className='list'>
-      {list.slice(0,30).map(w => <p>{w}</p>)}
+      {list.slice(0,99).map(w => <p>{w}</p>)}
       </div>
       
     </div>
