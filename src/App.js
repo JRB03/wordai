@@ -2,18 +2,22 @@ import './style/App.css';
 import { useState, useEffect } from 'react';
 
 import words from './pop/words.js';
+import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 function App() {
-  const [l1,setL1] = useState({l:' ',c:2});
-  const [l2,setL2] = useState({l:' ',c:2});
-  const [l3,setL3] = useState({l:' ',c:2});
-  const [l4,setL4] = useState({l:' ',c:2});
-  const [l5,setL5] = useState({l:' ',c:2});
+  const [l1,setL1] = useState({l:' ',c:0});
+  const [l2,setL2] = useState({l:' ',c:0});
+  const [l3,setL3] = useState({l:' ',c:0});
+  const [l4,setL4] = useState({l:' ',c:0});
+  const [l5,setL5] = useState({l:' ',c:0});
+  const [not,setNot] = useState([]);
+
+  const [exWidth,setExwidth] = useState('20px');
 
   const [list,setList] = useState(words);
 
   const updateLetter = (l,e) => {
-        if(!(e.key === 'Backspace' || e.code === 'Space' || ( e.which >= 65 && e.which <= 90 ) )) return;
+        if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
     switch(l) {
       case 1:
         if(e.key === 'Backspace') setL1({c:l1.c,l:' '});
@@ -35,6 +39,44 @@ function App() {
         if(e.key === 'Backspace') setL5({c:l5.c,l:' '});
         else setL5({c:l5.c,l:e.key});
         break;
+      case 6:
+        if(e.key === 'Backspace') {
+          setNot(not.filter((_,i) => i !== not.length-1))
+        }
+        else if(!not.includes(e.key)) setNot([...not,e.key]);
+        break;
+    }
+    setList(words);
+  }
+
+  const updateColor = (l) => {
+    let c;
+    switch(l) {
+      case 1:
+        c = l1.c
+        if(c+1>2) c = -1;
+        setL1({c:(c+1),l:l1.l});
+        break;
+      case 2:
+        c = l2.c
+        if(c+1>2) c = -1;
+        setL2({c:(c+1),l:l2.l});
+        break
+      case 3:
+        c = l3.c
+        if(c+1>2) c = -1;
+        setL3({c:(c+1),l:l3.l});
+        break;
+      case 4:
+        c = l4.c
+        if(c+1>2) c = -1;
+        setL4({c:(c+1),l:l4.l});
+        break;
+      case 5:
+        c = l5.c
+        if(c+1>2) c = -1;
+        setL5({c:(c+1),l:l5.l});
+        break;
     }
     setList(words);
   }
@@ -46,33 +88,48 @@ function App() {
     let idx = 0;
     while(idx < list.length) {
       let ink = true;
+      let ex = [...not];
       for(let n = 0; n < 5;n++) {
         let l = guess[n].l;
         let c = guess[n].c;
 
         if(l !== ' ' && c === 2 && list[idx].charAt(n) !== l) ink = false;
         if(l !== ' ' && c === 1 && !list[idx].includes(l)) ink = false;
-
+        if(l !== ' ' && c === 0) ex.push(l);
       }
+      ex.forEach( l => {
+        if(list[idx].includes(l)) ink = false;
+      })
       if(ink) arr.push(list[idx]);
       idx++;
     }
     setList(arr);
-  },[l1,l2,l3,l4,l5]);
+
+    for(let i = 0; i <=5; i++) setColor(i);
+  },[l1,l2,l3,l4,l5,not]);
   
 
-  const changeColor = (l) => {
-
+  const setColor = (c) => {
+  if(c.l === ' ' || c.c === 0) return '#8f8c8c';
+  if(c.c === 1) return '#eed494';
+  if(c.c === 2) return '#9ac8b7';
   };
+  
+  useEffect(() => {
+    if(not.length <= 2) setExwidth('30px');
+    else setExwidth('fit-content')
+  },[not])
+  
 
   return (
     <div>
       <div className='boxes'>
-        <p className='input' tabIndex='1' onKeyDown={ (e) => { updateLetter(1,e) } }>{l1.l}</p>
-        <p className='input' tabIndex='2' onKeyDown={ (e) => { updateLetter(2,e) } }>{l2.l}</p>
-        <p className='input' tabIndex='3' onKeyDown={ (e) => { updateLetter(3,e) } }>{l3.l}</p>
-        <p className='input' tabIndex='4' onKeyDown={ (e) => { updateLetter(4,e) } }>{l4.l}</p>
-        <p className='input' tabIndex='5' onKeyDown={ (e) => { updateLetter(5,e) } }>{l5.l}</p>
+        <p className='input' tabIndex='1' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
+        <p className='input' tabIndex='2' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
+        <p className='input' tabIndex='3' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
+        <p className='input' tabIndex='4' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
+        <p className='input' tabIndex='5' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
+        <p className='exclude' tabIndex='6' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
       </div>
 
       <div className='list'>
