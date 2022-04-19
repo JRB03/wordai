@@ -152,15 +152,23 @@ function App() {
         <h1>Word.aI</h1>
         <b></b>
       </div>
-      <div className='boxes'>
-        <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
-        <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
-        <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
-        <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
-        <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
-        
-        <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
+        <div id='boxes'>
+          <div id='inb'>
+            <label>[Enter]</label>
+            <div id='in'>
+              <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
+              <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
+              <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
+              <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
+              <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
+            </div>
+          </div>
+          <div id='exb'>
+            <label>ex:</label>
+            <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
+          </div>
       </div>
+      
 
       <div className='list'>
       {list.slice(0,99).map(w => <p>{w}</p>)}
