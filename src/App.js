@@ -36,30 +36,30 @@ function App() {
   }
 
   const updateLetter = (l,e) => {
-    if(e.key === 'Enter') {
+    if(e.key === 'Enter' || e.key === ' ') {
       updateColor(l);
       return;
     }
     if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
     switch(l) {
       case 1:
-        if(e.key === 'Backspace') setL1({c:l1.c,l:' '});
+        if(e.key === 'Backspace') setL1({c:0,l:' '});
         else setL1({c:l1.c,l:e.key});
         break;
       case 2:
-        if(e.key === 'Backspace') setL2({c:l2.c,l:' '});
+        if(e.key === 'Backspace') setL2({c:0,l:' '});
         else setL2({c:l2.c,l:e.key});
         break;
       case 3:
-        if(e.key === 'Backspace') setL3({c:l3.c,l:' '});
+        if(e.key === 'Backspace') setL3({c:0,l:' '});
         else setL3({c:l3.c,l:e.key});
         break;
       case 4:
-        if(e.key === 'Backspace') setL4({c:l4.c,l:' '});
+        if(e.key === 'Backspace') setL4({c:0,l:' '});
         else setL4({c:l4.c,l:e.key});
         break;
       case 5:
-        if(e.key === 'Backspace') setL5({c:l5.c,l:' '});
+        if(e.key === 'Backspace') setL5({c:0,l:' '});
         else setL5({c:l5.c,l:e.key});
         break;
       case 6:
