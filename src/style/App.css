@@ -151,15 +151,14 @@ img {
 
 .border {
   width:200px;
-  height:650px;
+  height:600px;
   display: flex;
   flex-flow: column;
 }
-#border-left {
-  
-}
-#border-right {
-  
+.border p {
+  font-size: small;
+  color:#afafaf;
+  margin-top: 0;
 }
 
 @keyframes float {

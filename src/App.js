@@ -126,7 +126,18 @@ function App() {
 
   useEffect(() => {
     //update list
-    let guess = [l1,l2,l3,l4,l5];
+    let guess = [];
+    let ing = [l1,l2,l3,l4,l5];
+    //adds enter inputs
+    ing.forEach(l => {
+      let inki = true;
+      let c = l.c;
+      guess.forEach(g => {
+        if(l.l === g.l && g.c > l.c && l.c === 0) c = 4;
+      });
+      guess.push({c:c,l:l.l});
+    });
+    //adds exclusion inputs
     not.forEach(l => {
       let inkn = true;
       guess.forEach(g => {
@@ -188,6 +199,7 @@ function App() {
           <img id='bs' src ={bs}/>
           <img id='bj' src ={bj}/>
           <img id='gg' src ={gg}/>
+          <p>@JRB03 '22</p>
         </div>
 
         <div id='content'>
@@ -208,7 +220,7 @@ function App() {
             </div>
           </div>
           <div className='list'>
-            {list.slice(0,94).map(w => <p className='word'>{w}</p>)}
+            {list.slice(0,93).map(w => <p className='word'>{w}</p>)}
           </div>
         </div>
 
