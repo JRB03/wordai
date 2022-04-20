@@ -137,7 +137,7 @@ function App() {
   },[l1,l2,l3,l4,l5,not]);
   
   useEffect(() => {
-    if(not.length <= 2) setExwidth('30px');
+    if(not.length <= 2) setExwidth('53px');
     else setExwidth('fit-content')
   },[not])
 
@@ -170,7 +170,7 @@ function App() {
       
 
       <div className='list'>
-      {list.slice(0,99).map(w => <p className='word'>{w}</p>)}
+      {list.slice(0,94).map(w => <p className='word'>{w}</p>)}
       </div>
       
     </div>
