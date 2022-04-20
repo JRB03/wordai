@@ -111,39 +111,40 @@ img {
   align-self: center;
   margin-bottom:60px;
 } #bh {
-  margin-left: 40px;
+  margin-left: 80px;
   animation: float 5.2s ease-in-out infinite; 
 } #ge {
-  margin-right: 60px;
+  margin-right: 150px;
   animation: float 7s ease-in-out infinite;
 } #ya {
   animation: float 6s ease-in-out infinite;
 } #bs {
-  margin-right: 50px;
+  margin-right: 70px;
   animation: float 7.3s ease-in-out infinite;
 } #bj {
-  margin-left: 30px;
+  margin-left: 90px;
   animation: float 6.3s ease-in-out infinite;
 } #gg {
-  margin-right: 20px;
+  margin-right: 120px;
   animation: float 5.8s ease-in-out infinite;
 }
   #ye {
-  margin-right: 30px;
+  margin-right: 60px;
   animation: float 5.2s ease-in-out infinite; 
 } #bu {
-  margin-left: 60px;
+  margin-left: 100px;
   animation: float 6.2s ease-in-out infinite;
 } #gm {
+  margin-right: 100px;
   animation: float 5s ease-in-out infinite;
 } #bw {
-  margin-left: 40px;
+  margin-left: 140px;
   animation: float 6.8s ease-in-out infinite;
 } #gs {
-  margin-right: 30px;
+  margin-right: 50px;
   animation: float 6s ease-in-out infinite;
 } #br {
-  margin-left: 20px;
+  margin-left: 90px;
   animation: float 5.1s ease-in-out infinite;
 }
   
