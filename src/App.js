@@ -2,7 +2,6 @@ import './style/App.css';
 import { useState, useEffect } from 'react';
 
 import words from './pop/words.js';
-import { setSelectionRange } from '@testing-library/user-event/dist/utils';
 
 function App() {
   const [l1,setL1] = useState({l:' ',c:0});
@@ -171,7 +170,7 @@ function App() {
       
 
       <div className='list'>
-      {list.slice(0,99).map(w => <p>{w}</p>)}
+      {list.slice(0,99).map(w => <p className='word'>{w}</p>)}
       </div>
       
     </div>
