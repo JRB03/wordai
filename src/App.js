@@ -3,6 +3,20 @@ import { useState, useEffect } from 'react';
 
 import words from './pop/words.js';
 
+import bh from './img/bh.png';
+import bj from './img/bj.png';
+import br from './img/br.png';
+import bs from './img/bs.png';
+import bu from './img/bu.png';
+import bw from './img/bw.png';
+import ge from './img/ge.png';
+import gg from './img/gg.png';
+import gm from './img/gm.png';
+import gs from './img/gs.png';
+import ya from './img/ya.png';
+import ye from './img/ye.png';
+
+
 function App() {
   const [l1,setL1] = useState({l:' ',c:0});
   const [l2,setL2] = useState({l:' ',c:0});
@@ -11,7 +25,8 @@ function App() {
   const [l5,setL5] = useState({l:' ',c:0});
   const [not,setNot] = useState([]);
 
-  const [exWidth,setExwidth] = useState('20px');
+  const [exWidth,setExwidth] = useState('53px');
+  const [exHeight,setExHeight] = useState('30px');
 
   const [list,setList] = useState(words);
 
@@ -112,12 +127,19 @@ function App() {
   useEffect(() => {
     //update list
     let guess = [l1,l2,l3,l4,l5];
+    not.forEach(l => {
+      let inkn = true;
+      guess.forEach(g => {
+        if(l === g.l) inkn = false;
+      });
+      if(inkn) guess.push({c:0,l:l});
+    });
     let arr = [];
     let idx = 0;
     while(idx < list.length) {
       let ink = true;
-      let ex = [...not];
-      for(let n = 0; n < 5;n++) {
+      let ex = [];
+      for(let n = 0; n < guess.length;n++) {
         let l = guess[n].l;
         let c = guess[n].c;
 
@@ -137,8 +159,14 @@ function App() {
   },[l1,l2,l3,l4,l5,not]);
   
   useEffect(() => {
-    if(not.length <= 2) setExwidth('53px');
-    else setExwidth('fit-content')
+    if(not.length <= 2) {
+      setExwidth('53px');
+      setExHeight('30px');
+    }
+    else {
+      setExwidth('fit-content');
+      setExHeight('fit-content');
+    }
   },[not])
 
   return (
@@ -151,27 +179,50 @@ function App() {
         <h1>Word.aI</h1>
         <b></b>
       </div>
-        <div id='boxes'>
-          <div id='inb'>
-            <label>[Enter]</label>
-            <div id='in'>
-              <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
-              <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
-              <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
-              <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
-              <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
+
+      <div id='page'>
+        <div id='border-left' className='border'>
+          <img id='bh' src={bh}/>
+          <img id='ge' src={ge}/>
+          <img id='ya' src ={ya}/>
+          <img id='bs' src ={bs}/>
+          <img id='bj' src ={bj}/>
+          <img id='gg' src ={gg}/>
+        </div>
+
+        <div id='content'>
+          <div id='boxes'>
+            <div id='inb'>
+              <label>[Enter]</label>
+              <div id='in'>
+                <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
+                <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
+                <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
+                <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
+                <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
+              </div>
+            </div>
+            <div id='exb'>
+              <label>exclude:</label>
+              <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth, height: exHeight}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
             </div>
           </div>
-          <div id='exb'>
-            <label>exclude:</label>
-            <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
+          <div className='list'>
+            {list.slice(0,94).map(w => <p className='word'>{w}</p>)}
           </div>
-      </div>
-      
+        </div>
 
-      <div className='list'>
-      {list.slice(0,94).map(w => <p className='word'>{w}</p>)}
+        <div id='border-right' className='border'>
+          <img id='ye' src={ye}/>
+          <img id='bu' src={bu}/>
+          <img id='gm' src ={gm}/>
+          <img id='bw' src ={bw}/>
+          <img id='gs' src ={gs}/>
+          <img id='br' src ={br}/>
+        </div>
       </div>
+
+      
       
     </div>
   );
