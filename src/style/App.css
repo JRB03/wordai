@@ -150,7 +150,7 @@ img {
 
 
 .border {
-  width:200px;
+  width:250px;
   height:600px;
   display: flex;
   flex-flow: column;
