@@ -199,7 +199,7 @@ function App() {
           <img id='bs' src ={bs}/>
           <img id='bj' src ={bj}/>
           <img id='gg' src ={gg}/>
-          <p>@JRB03 '22</p>
+          <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
         </div>
 
         <div id='content'>

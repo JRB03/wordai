@@ -156,7 +156,7 @@ img {
   display: flex;
   flex-flow: column;
 }
-.border p {
+.border a {
   font-size: small;
   color:#afafaf;
   margin-top: 0;
