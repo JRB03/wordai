@@ -207,7 +207,7 @@ function App() {
           <img id='ge' src={ge}/>
           <img id='ya' src ={ya}/>
           <img id='bs' src ={bs}/>
-          <img id='bj' src ={bj}/>
+          <img id='bj' src ={bj} title="yeet"/>
           <img id='gg' src ={gg}/>
         </div>
 
