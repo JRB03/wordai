@@ -2,6 +2,7 @@ import './style/App.css';
 import { useState, useEffect } from 'react';
 
 import words from './pop/words.js';
+import popwords from './pop/popwords.js'
 
 import bh from './img/bh.png';
 import bj from './img/bj.png';
@@ -181,7 +182,7 @@ function App() {
   },[not])
 
   return (
-    <div class='wordaI' onKeyDown={e => {
+    <div className='wordaI' onKeyDown={e => {
       if(e.key === 'ArrowRight') tabRight();
       if(e.key === 'ArrowLeft') tabLeft();
     }}>
@@ -220,7 +221,11 @@ function App() {
             </div>
           </div>
           <div className='list'>
-            {list.slice(0,82).map(w => <p className='word'>{w}</p>)}
+            {list.slice(0,82).map(w => {
+              let arr = popwords.slice(0,3000);
+              if(arr.includes(w)) return <p className='word' style={{fontWeight: "600"}}>{w}</p>
+              return <p className='word'>{w}</p>
+            })}
           </div>
         </div>
 
