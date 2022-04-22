@@ -14,13 +14,19 @@
   color: rgba(0, 0, 0, 0.675);
   margin-bottom: 0px;
 } #header h2 {
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-top: 20px;
+  margin-left: 20px;
 
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  color: #eed494;
-} #header b {
-  margin-right: 30px;
+  font-family: monospace;
+  font-size: large;
+  font-weight: 500;
+  color: #afafaf;
+} #header a {
+  font-size: small;
+  font-family: monospace;
+  color:#afafaf;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 
@@ -155,11 +161,6 @@ img {
   height:600px;
   display: flex;
   flex-flow: column;
-}
-.border a {
-  font-size: small;
-  color:#afafaf;
-  margin-top: 0;
 }
 
 @keyframes float {

@@ -39,6 +39,15 @@ function App() {
   elements.push(document.getElementById('in5'));
   elements.push(document.getElementById('ex'));
   
+  let blurb = "Welcome!\n" +
+    "Word.ai will take your Wordle guess (the five boxes and exclude),\n" +
+    " and give you the best options for your next one!\n\n" +
+    "Use [tab], [<], [>], or click to select a box.\n" +
+    "Use [Enter], [Space], or click to change a box's color.\n\n" +
+    "The bold words are more popular\n (and so potentially more likely to be the Wordle)\n\n"+
+    "This github project is linked at the top right of the page."
+
+
   const tabRight = () => {
     let i = elements.indexOf(document.activeElement);
     if(i >= elements.length-1) i = -1;
@@ -187,9 +196,9 @@ function App() {
       if(e.key === 'ArrowLeft') tabLeft();
     }}>
       <div id='header'>
-        <h2></h2>
+        <h2 title={blurb}>{">info"}</h2>
         <h1>Word.aI</h1>
-        <b></b>
+        <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
       </div>
 
       <div id='page'>
@@ -200,7 +209,6 @@ function App() {
           <img id='bs' src ={bs}/>
           <img id='bj' src ={bj}/>
           <img id='gg' src ={gg}/>
-          <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
         </div>
 
         <div id='content'>
