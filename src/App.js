@@ -220,7 +220,7 @@ function App() {
             </div>
           </div>
           <div className='list'>
-            {list.slice(0,93).map(w => <p className='word'>{w}</p>)}
+            {list.slice(0,82).map(w => <p className='word'>{w}</p>)}
           </div>
         </div>
 
