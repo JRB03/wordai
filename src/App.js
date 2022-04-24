@@ -155,6 +155,7 @@ function App() {
       });
       if(inkn) guess.push({c:0,l:l});
     });
+
     let arr = [];
     let idx = 0;
     while(idx < list.length) {
@@ -165,7 +166,7 @@ function App() {
         let c = guess[n].c;
 
         if(l !== ' ' && c === 2 && list[idx].charAt(n) !== l) ink = false;
-        if(l !== ' ' && c === 1 && !list[idx].includes(l)) ink = false;
+        if(l !== ' ' && c === 1 && (!list[idx].includes(l) || list[idx].charAt(n) === l)) ink = false;
         if(l !== ' ' && c === 0) ex.push(l);
       }
       ex.forEach( l => {
