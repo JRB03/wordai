@@ -39,6 +39,8 @@ function App() {
   elements.push(document.getElementById('in5'));
   elements.push(document.getElementById('ex'));
   
+  useEffect(()=>{document.getElementById('in1').focus()},[]);
+
   let blurb = "Welcome!\n" +
     "Word.ai will take your Wordle guess (the five boxes and exclude),\n" +
     " and give you the best options for your next one!\n\n" +
@@ -142,7 +144,7 @@ function App() {
     ing.forEach(l => {
       let inki = true;
       let c = l.c;
-      guess.forEach(g => {
+      ing.forEach(g => {
         if(l.l === g.l && g.c > l.c && l.c === 0) c = 4;
       });
       guess.push({c:c,l:l.l});
@@ -208,7 +210,7 @@ function App() {
           <img id='ge' src={ge}/>
           <img id='ya' src ={ya}/>
           <img id='bs' src ={bs}/>
-          <img id='bj' src ={bj} title="yeet"/>
+          <img id='bj' src ={bj} title="Ɛ>"/>
           <img id='gg' src ={gg}/>
         </div>
 
@@ -219,7 +221,7 @@ function App() {
               <div id='in'>
                 <p className='input' id='in1' tabIndex='0' style={{background: setColor(l1)}} onKeyDown={ (e) => { updateLetter(1,e) } } onClick={()=> {updateColor(1)}}>{l1.l}</p>
                 <p className='input' id='in2' tabIndex='0' style={{background: setColor(l2)}} onKeyDown={ (e) => { updateLetter(2,e) } } onClick={()=> {updateColor(2)}}>{l2.l}</p>
-                <p className='input' id='in3'tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
+                <p className='input' id='in3' tabIndex='0' style={{background: setColor(l3)}} onKeyDown={ (e) => { updateLetter(3,e) } } onClick={()=> {updateColor(3)}}>{l3.l}</p>
                 <p className='input' id='in4' tabIndex='0' style={{background: setColor(l4)}} onKeyDown={ (e) => { updateLetter(4,e) } } onClick={()=> {updateColor(4)}}>{l4.l}</p>
                 <p className='input' id='in5' tabIndex='0' style={{background: setColor(l5)}} onKeyDown={ (e) => { updateLetter(5,e) } } onClick={()=> {updateColor(5)}}>{l5.l}</p>
               </div>
@@ -241,10 +243,10 @@ function App() {
         <div id='border-right' className='border'>
           <img id='ye' src={ye}/>
           <img id='bu' src={bu}/>
-          <img id='gm' src ={gm}/>
+          <img id='gm' src ={gm} title="70 75 73 68 69 6E 20 70"/>
           <img id='bw' src ={bw}/>
           <img id='gs' src ={gs}/>
-          <img id='br' src ={br}/>
+          <img id='br' src ={br} title="<3"/>
         </div>
       </div>
 
