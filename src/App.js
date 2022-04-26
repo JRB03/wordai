@@ -62,7 +62,7 @@ function App() {
   }
 
   const updateLetter = (l,e) => {
-    if(e.key === 'Enter' || e.key === ' ') {
+    if( l < 6 && (e.key === 'Enter' || e.key === ' ')) {
       updateColor(l);
       return;
     }
