@@ -104,27 +104,27 @@ function App() {
     switch(l) {
       case 1:
         c = l1.c
-        if(c+1>2) c = -1;
+        if(c+1>2 || l1.l === ' ') c = -1;
         setL1({c:(c+1),l:l1.l});
         break;
       case 2:
         c = l2.c
-        if(c+1>2) c = -1;
+        if(c+1>2 || l2.l === ' ') c = -1;
         setL2({c:(c+1),l:l2.l});
         break
       case 3:
         c = l3.c
-        if(c+1>2) c = -1;
+        if(c+1>2 || l3.l === ' ') c = -1;
         setL3({c:(c+1),l:l3.l});
         break;
       case 4:
         c = l4.c
-        if(c+1>2) c = -1;
+        if(c+1>2 || l4.l === ' ') c = -1;
         setL4({c:(c+1),l:l4.l});
         break;
       case 5:
         c = l5.c
-        if(c+1>2) c = -1;
+        if(c+1>2 || l5.l === ' ') c = -1;
         setL5({c:(c+1),l:l5.l});
         break;
     }
