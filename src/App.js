@@ -41,14 +41,18 @@ function App() {
   
   useEffect(()=>{document.getElementById('in1').focus()},[]);
 
-  let blurb = "Welcome!\n" +
-    "Word.ai will take your Wordle guess (the five boxes and exclude),\n" +
-    " and give you the best options for your next one!\n\n" +
+  let blurb = "Welcome!                                                                                                  x\n" +
+    "Word.ai will take your Wordle guess/input (the five boxes and exclude),\n" +
+    " and give you the best options for your next guess!\n\n" +
     "Use [tab], [<], [>], or click to select a box.\n" +
+    "Use your keyboard to type in a letter.\n" +
     "Use [Enter], [Space], or click to change a box's color.\n\n" +
-    "The bold words are more popular\n (and so potentially more likely to be the Wordle)\n\n"+
+    "The bold words are more popular\n (and so potentially more likely to be the Wordle).\n\n"+
     "This github project is linked at the top right of the page."
 
+  const popUp = () => {
+    document.getElementById('blurb').classList.toggle('show');
+  }
 
   const tabRight = () => {
     let i = elements.indexOf(document.activeElement);
@@ -199,7 +203,9 @@ function App() {
       if(e.key === 'ArrowLeft') tabLeft();
     }}>
       <div id='header'>
-        <h2 title={blurb}>{">info"}</h2>
+        <div id='info' onClick={() => {document.getElementById('blurb').classList.toggle('show')}}>{">info"}
+          <text id='blurb'>{blurb}</text>
+        </div>
         <h1>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
       </div>
