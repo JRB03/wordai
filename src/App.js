@@ -17,6 +17,19 @@ import gs from './img/gs.png';
 import ya from './img/ya.png';
 import ye from './img/ye.png';
 
+import bhd from './img/bhd.png';
+import bjd from './img/bjd.png';
+import brd from './img/brd.png';
+import bsd from './img/bsd.png';
+import bud from './img/bud.png';
+import bwd from './img/bwd.png';
+import ged from './img/ged.png';
+import ggd from './img/ggd.png';
+import gmd from './img/gmd.png';
+import gsd from './img/gsd.png';
+import yad from './img/yad.png';
+import yed from './img/yed.png';
+
 
 function App() {
   const [l1,setL1] = useState({l:' ',c:0});
@@ -25,6 +38,7 @@ function App() {
   const [l4,setL4] = useState({l:' ',c:0});
   const [l5,setL5] = useState({l:' ',c:0});
   const [not,setNot] = useState([]);
+  const [dark, setDark] = useState(false);
 
   const [exWidth,setExwidth] = useState('53px');
   const [exHeight,setExHeight] = useState('30px');
@@ -50,9 +64,13 @@ function App() {
     "The bold words are more popular\n (and so potentially more likely to be the Wordle).\n\n"+
     "This github project is linked at the top right of the page."
 
-  const popUp = () => {
-    document.getElementById('blurb').classList.toggle('show');
-  }
+  const modeToggle = () => {
+    document.getElementById('wordaI').classList.toggle('dark');
+    document.getElementById('title').classList.toggle('dark');
+    document.getElementById('list').classList.toggle('dark');
+    document.getElementById('mode').classList.toggle('dark');
+    setDark(!dark);
+  };
 
   const tabRight = () => {
     let i = elements.indexOf(document.activeElement);
@@ -198,7 +216,7 @@ function App() {
   },[not])
 
   return (
-    <div className='wordaI' onKeyDown={e => {
+    <div id='wordaI' onKeyDown={e => {
       if(e.key === 'ArrowRight') tabRight();
       if(e.key === 'ArrowLeft') tabLeft();
     }}>
@@ -206,7 +224,7 @@ function App() {
         <div id='info' onClick={() => {document.getElementById('blurb').classList.toggle('show')}}>{">info"}
           <text id='blurb'>{blurb}</text>
         </div>
-        <h1>Word.aI</h1>
+        <h1 id='title'>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
       </div>
 
@@ -237,22 +255,23 @@ function App() {
               <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth, height: exHeight}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
             </div>
           </div>
-          <div className='list'>
+          <div id='list'>
             {list.slice(0,82).map(w => {
               let arr = popwords.slice(0,3000);
-              if(arr.includes(w)) return <p className='word' style={{fontWeight: "600"}}>{w}</p>
+              if(arr.includes(w)) return <p className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
               return <p className='word'>{w}</p>
             })}
           </div>
         </div>
 
         <div id='border-right' className='border'>
-          <img id='ye' src={ye}/>
+          <img id='ye' src={(!dark) ? ye : yed}/>
           <img id='bu' src={bu}/>
           <img id='gm' src ={gm} title="70 75 73 68 69 6E 20 70"/>
           <img id='bw' src ={bw}/>
           <img id='gs' src ={gs}/>
           <img id='br' src ={br} title="<3"/>
+          <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('>Light Mode<') : ('>Dark Mode<')}</a>
         </div>
       </div>
 
