@@ -167,7 +167,7 @@ function App() {
       let inki = true;
       let c = l.c;
       ing.forEach(g => {
-        if(l.l === g.l && g.c > l.c && l.c === 0) c = 4;
+        if(l.l === g.l && g.c > l.c && l.c === 0) c = 1;
       });
       guess.push({c:c,l:l.l});
     });
@@ -190,8 +190,8 @@ function App() {
         let c = guess[n].c;
 
         if(l !== ' ' && c === 2 && list[idx].charAt(n) !== l) ink = false;
-        if(l !== ' ' && c === 1 && (!list[idx].includes(l) || list[idx].charAt(n) === l)) ink = false;
-        if(l !== ' ' && c === 0) ex.push(l);
+        else if(l !== ' ' && c === 1 && (!list[idx].includes(l) || list[idx].charAt(n) === l)) ink = false;
+        else if(l !== ' ' && c === 0) ex.push(l);
       }
       ex.forEach( l => {
         if(list[idx].includes(l)) ink = false;
