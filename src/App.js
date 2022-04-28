@@ -25,6 +25,7 @@ function App() {
   const [l4,setL4] = useState({l:' ',c:0});
   const [l5,setL5] = useState({l:' ',c:0});
   const [not,setNot] = useState([]);
+  const [dark, setDark] = useState(false);
 
   const [exWidth,setExwidth] = useState('53px');
   const [exHeight,setExHeight] = useState('30px');
@@ -53,6 +54,13 @@ function App() {
   const popUp = () => {
     document.getElementById('blurb').classList.toggle('show');
   }
+
+  useEffect( () => {
+    document.getElementById('wordaI').classList.toggle('dark');
+    document.getElementById('title').classList.toggle('dark');
+    document.getElementById('list').classList.toggle('dark');
+    document.getElementById('mode').classList.toggle('dark');
+  },[dark])
 
   const tabRight = () => {
     let i = elements.indexOf(document.activeElement);
@@ -198,7 +206,7 @@ function App() {
   },[not])
 
   return (
-    <div className='wordaI' onKeyDown={e => {
+    <div id='wordaI' onKeyDown={e => {
       if(e.key === 'ArrowRight') tabRight();
       if(e.key === 'ArrowLeft') tabLeft();
     }}>
@@ -206,7 +214,7 @@ function App() {
         <div id='info' onClick={() => {document.getElementById('blurb').classList.toggle('show')}}>{">info"}
           <text id='blurb'>{blurb}</text>
         </div>
-        <h1>Word.aI</h1>
+        <h1 id='title' className='dark'>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
       </div>
 
@@ -237,13 +245,14 @@ function App() {
               <p className='exclude' id='ex' tabIndex='0' style={{width: exWidth, height: exHeight}} onKeyDown={ (e) => { updateLetter(6,e) } }>{not.join(' ')}</p>
             </div>
           </div>
-          <div className='list'>
+          <div id='list'>
             {list.slice(0,82).map(w => {
               let arr = popwords.slice(0,3000);
               if(arr.includes(w)) return <p className='word' style={{fontWeight: "600"}}>{w}</p>
               return <p className='word'>{w}</p>
             })}
           </div>
+          <a id='mode' onClick={() => setDark(!dark)}>{(dark) ? ('>Light Mode<') : ('>Dark Mode<')}</a>
         </div>
 
         <div id='border-right' className='border'>

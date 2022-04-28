@@ -1,16 +1,19 @@
-.wordaI {
+#wordaI {
   display:flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: start;
   transition: 2s;
+  height: 100vh;
+  background-color: white;
+} #wordaI.dark {
+  background-color: rgb(65, 65, 65);
 }
 
 #header {
   display: flex;
   justify-content: center;
   justify-content: space-between;
-} #header h1 {
-  color: #8cbbaa;
+} #title {
   color: rgba(0, 0, 0, 0.675);
   margin-bottom: 0px;
 } #header a {
@@ -19,6 +22,8 @@
   color:#afafaf;
   margin-top: 20px;
   margin-right: 20px;
+} #title.dark {
+  color: rgb(222, 222, 222);
 }
 
 #info {
@@ -69,16 +74,18 @@
   justify-content: start;
 }
 
-.list {
+#list {
   display:flex;
   flex-wrap: wrap;
   justify-content: space-around;
   width: 420px;
 
-} .list p {
+} .word {
   margin: 10px;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.775);
+} #list.dark .word{
+  color: white;
 }
 
 label {
@@ -146,6 +153,7 @@ img {
   height: 60px; 
   align-self: center;
   margin-bottom:60px;
+  border-radius: 8px;
 } #bh {
   margin-left: 80px;
   animation: float 5.2s ease-in-out infinite; 
@@ -184,6 +192,18 @@ img {
   animation: float 5.1s ease-in-out infinite;
 }
   
+#mode {
+  font-size: large;
+  font-family: monospace;
+  color:rgb(65, 65, 65);
+  margin-top: 60px;
+  width:420px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+} #mode.dark {
+  color: #afafaf;
+}
 
 
 .border {
