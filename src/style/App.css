@@ -146,6 +146,7 @@ img {
   height: 60px; 
   align-self: center;
   margin-bottom:60px;
+  border-radius: 8px;
 } #bh {
   margin-left: 80px;
   animation: float 5.2s ease-in-out infinite; 
