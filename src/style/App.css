@@ -199,12 +199,17 @@ img {
   font-size: large;
   font-family: monospace;
   color:rgb(65, 65, 65);
-  margin-top: 35px;
-  width:150px;
-  margin-left: 80px;
+  width:100px;
+  
+
   display: flex;
   justify-content: center;
   cursor: pointer;
+
+  position: absolute;
+  bottom:20px;
+  right: 10px;
+  
 } #mode.dark {
   color: #afafaf;
 }
