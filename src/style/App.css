@@ -2,7 +2,7 @@
   display:flex;
   flex-flow: column;
   justify-content: start;
-  transition: 2s;
+  transition: 1.5s;
   height: 100vh;
   background-color: white;
 } #wordaI.dark {
@@ -16,6 +16,7 @@
 } #title {
   color: rgba(0, 0, 0, 0.675);
   margin-bottom: 0px;
+  transition: 1.5s;
 } #header a {
   font-size: small;
   font-family: monospace;
@@ -58,6 +59,7 @@
   z-index: 1;
   
   visibility: hidden;
+  transition: 0s;
 } #info .show {
   visibility: visible;
 }
@@ -79,7 +81,6 @@
   flex-wrap: wrap;
   justify-content: space-around;
   width: 420px;
-
 } .word {
   margin: 10px;
   text-transform: uppercase;
@@ -157,6 +158,7 @@ img {
 } #bh {
   margin-left: 80px;
   animation: float 5.2s ease-in-out infinite; 
+  transition: 2s;
 } #ge {
   margin-right: 150px;
   animation: float 7s ease-in-out infinite;
@@ -190,14 +192,16 @@ img {
 } #br {
   margin-left: 90px;
   animation: float 5.1s ease-in-out infinite;
+  margin-bottom: 20px;;
 }
   
 #mode {
   font-size: large;
   font-family: monospace;
   color:rgb(65, 65, 65);
-  margin-top: 60px;
-  width:420px;
+  margin-top: 35px;
+  width:150px;
+  margin-left: 80px;
   display: flex;
   justify-content: center;
   cursor: pointer;
