@@ -271,7 +271,7 @@ function App() {
           <img id='bw' src ={bw}/>
           <img id='gs' src ={gs}/>
           <img id='br' src ={br} title="<3"/>
-          <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('>Light Mode<') : ('>Dark Mode<')}</a>
+          <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
         </div>
       </div>
 
