@@ -173,9 +173,9 @@ function App() {
         <div id='content' >
          <label>[Enter]</label>
           <div id='boxes' >
-            <Guess id='g1' num={1} initList={() => initList()} updateList={(g,n) => updateList(g,n)}/>
-            <Guess id='g2' num={2} initList={() => initList()} updateList={(g,n) => updateList(g,n)}/>
-            <Guess id='g3' num={3} initList={() => initList()} updateList={(g,n) => updateList(g,n)}/>
+            <Guess id='g1' num={1} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
+            <Guess id='g2' num={2} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
+            <Guess id='g3' num={3} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
           </div>
           <div id='list'>
             {list.slice(0,listSize).map(w => {

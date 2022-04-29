@@ -23,22 +23,27 @@ const Guess = (props) => {
           else setL1({c:l1.c,l:e.key});
           break;
         case 2:
+          if(e.key == 'Backspace' && l2.l === ' ') props.untab();
           if(e.key === 'Backspace') setL2({c:0,l:' '});
           else setL2({c:l2.c,l:e.key});
           break;
         case 3:
+          if(e.key == 'Backspace' && l3.l === ' ') props.untab();
           if(e.key === 'Backspace') setL3({c:0,l:' '});
           else setL3({c:l3.c,l:e.key});
           break;
         case 4:
+          if(e.key == 'Backspace' && l4.l === ' ') props.untab();
           if(e.key === 'Backspace') setL4({c:0,l:' '});
           else setL4({c:l4.c,l:e.key});
           break;
         case 5:
+          if(e.key == 'Backspace' && l5.l === ' ') props.untab();
           if(e.key === 'Backspace') setL5({c:0,l:' '});
           else setL5({c:l5.c,l:e.key});
           break;
       }
+      if(!(e.key == 'Backspace')) props.tab();
    };
 
    const updateColor = (l) => {
