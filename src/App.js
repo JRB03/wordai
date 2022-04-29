@@ -42,6 +42,7 @@ function App() {
     elements.push(document.getElementById('in4'+i));
     elements.push(document.getElementById('in5'+i));
   }
+  useEffect( () => document.getElementById('in11').focus(),[])
 
   const tabRight = () => {
      let i = elements.indexOf(document.activeElement);
@@ -159,7 +160,6 @@ function App() {
          if(e.key === 'ArrowRight') tabRight();
          if(e.key === 'ArrowUp') tabUp();
          if(e.key === 'ArrowDown') tabDown();
-         document.getElementById('g1').focus();
        }}>
         <div id='border-left' className='border'>
           <img id='bh' src ={bh}/>
