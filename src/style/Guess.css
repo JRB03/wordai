@@ -1,0 +1,21 @@
+#in {
+   display: flex;
+   justify-content: center;
+   color: white;
+   text-transform: uppercase;
+ 
+   cursor: pointer;
+ }
+ .input{
+   height: 30px;
+   display: flex;
+   justify-content: center;
+ 
+   margin: 5px;
+   width: 29px;
+   
+   padding: 3px;
+   padding-bottom: 4px;
+   padding-top: 0px;
+   border-radius: 3px;
+ }

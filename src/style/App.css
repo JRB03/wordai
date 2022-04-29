@@ -30,6 +30,7 @@
 #info {
   margin-top: 20px;
   margin-left: 20px;
+  margin-right: 22px;
 
   font-family: monospace;
   font-size: large;
@@ -91,62 +92,18 @@
 
 label {
   font-size: small;
-  margin-left: 5px;
-  color:#afafaf
-}
-#inb label {
-  color:#8cbbaa;
-  margin-left: 94px;
+  color: #9ac8b7;
+  display: flex;
+  justify-content: center;
+  width: 420px;
 }
 
 #boxes {
   display: flex;
+  flex-flow: column;
   justify-content: center;
-}
-#in {
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
-}
-#in,#ex {
-  color: white;
-  text-transform: uppercase;
-
-  cursor: pointer;
-}
-#boxes p {
+} #boxes p {
   font-size: 24px;
-}
-
-.input{
-  height: 30px;
-  display: flex;
-  justify-content: center;
-
-  margin: 5px;
-  width: 29px;
-  
-  padding: 3px;
-  padding-bottom: 4px;
-  padding-top: 0px;
-  border-radius: 3px;
-}
-.exclude{
-  display:flex;
-  flex-wrap:unset;
-  
-  justify-content: left;
-
-  background-color: #afafaf;
-
-  margin: 5px;
-  margin-left: 15px;
-  padding: 3px;
-  padding-bottom: 4px;
-  padding-top: 0px;
-  padding-left:4px;
-  padding-right: 4px;
-  border-radius: 3px;
 }
 
 img {
