@@ -127,10 +127,10 @@ function App() {
     setList(arr);
   }
 
-  let blurb = "Welcome!                                                                                                  x\n" +
-    "Word.ai will take your Wordle guess/input (the five boxes and exclude),\n" +
+  let blurb = "Welcome!                                                   x\n" +
+    "Word.ai will take your Wordle guesses/input,\n" +
     " and give you the best options for your next guess!\n\n" +
-    "Use [tab], [<], [>], or click to select a box.\n" +
+    "Use [tab], [←] [→] [↑] [↓], or click to select a box.\n" +
     "Use your keyboard to type in a letter.\n" +
     "Use [Enter], [Space], or click to change a box's color.\n\n" +
     "The bold words are more popular\n (and so potentially more likely to be the Wordle).\n\n"+
