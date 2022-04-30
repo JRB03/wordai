@@ -29,7 +29,7 @@ function App() {
   const [guess5,setGuess5] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
 
   const numG = 3;
-  const popBold = 4000; 
+  const popBold = 3250; 
   const listSize = 69;
 
   const [dark, setDark] = useState(false);
