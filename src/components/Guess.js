@@ -84,9 +84,6 @@ const Guess = (props) => {
       if(c.c === 2) return '#9ac8b7';
    };
    useEffect(() => {
-      
-   },[l1,l2,l3,l4,l5]);
-   useEffect(() => {
       let guess = [l1,l2,l3,l4,l5];
       //update parent list
       props.updateList(guess,props.num);

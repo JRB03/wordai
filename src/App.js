@@ -2,6 +2,7 @@ import './style/App.css';
 import { useState, useEffect } from 'react';
 
 import Guess from './components/Guess.js';
+import Keyboard from './components/Keyboard.js';
 
 import words from './pop/words.js';
 import popwords from './pop/popwords.js';
@@ -30,7 +31,7 @@ function App() {
 
   const numG = 3;
   const popBold = 3250; 
-  const listSize = 69;
+  const listSize = 52;
 
   const [dark, setDark] = useState(false);
   
@@ -145,6 +146,10 @@ function App() {
     setDark(!dark);
   };
 
+  const triggerKeyPress = (k) => {
+    this.ref.dispatchEvent(new KeyboardEvent('keypress', { key: k }));
+  }
+
   return (
     <div id='wordaI'>
       <div id='header'>
@@ -184,6 +189,7 @@ function App() {
               return <p className='word'>{w}</p>
             })}
           </div>
+          
         </div>
 
         <div id='border-right' className='border'>
@@ -196,9 +202,7 @@ function App() {
           <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
         </div>
       </div>
-
-      
-      
+      <Keyboard/>
     </div>
   );
 }
