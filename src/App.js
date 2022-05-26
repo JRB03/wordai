@@ -154,7 +154,7 @@ function App() {
     <div id='wordaI'>
       <div id='header'>
         <div id='info' onClick={() => {document.getElementById('blurb').classList.toggle('show')}}>{">info"}
-          <text id='blurb'>{blurb}</text>
+          <p id='blurb'>{blurb}</p>
         </div>
         <h1 id='title'>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
@@ -185,7 +185,7 @@ function App() {
           <div id='list'>
             {list.slice(0,listSize).map(w => {
               let arr = popwords.slice(0,popBold);
-              if(arr.includes(w)) return <p className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
+              if(arr.includes(w)) return <p key={w} className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
               return <p className='word'>{w}</p>
             })}
           </div>
