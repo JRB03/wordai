@@ -32,7 +32,7 @@ function App() {
 
   const numG = 3;
   const popBold = 3250; 
-  const listSize = 52;
+  const listSize = 57;
 
   const [dark, setDark] = useState(false);
   
