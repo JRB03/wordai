@@ -37,15 +37,8 @@ function App() {
   const [dark, setDark] = useState(false);
   
   const elements = [];
-  for(let i = 1; i <= numG; i++) {
-    elements.push(document.getElementById('in1'+i));
-    elements.push(document.getElementById('in2'+i));
-    elements.push(document.getElementById('in3'+i));
-    elements.push(document.getElementById('in4'+i));
-    elements.push(document.getElementById('in5'+i));
-  }
   const focusIn = (id) => { document.getElementById(id).focus(); }
-  useEffect( () => focusIn('in11'),[])
+  useEffect( () => { focusIn('in11'); },[])
 
   const tabRight = () => {
      let i = elements.indexOf(document.activeElement);
@@ -67,6 +60,15 @@ function App() {
     if(Math.floor(i/5) <= 0) i += elements.length;
     elements[i - 5].focus();
   }
+  useEffect( () => {
+    for(let i = 1; i <= numG; i++) {
+      elements.push(document.getElementById('in1'+i));
+      elements.push(document.getElementById('in2'+i));
+      elements.push(document.getElementById('in3'+i));
+      elements.push(document.getElementById('in4'+i));
+      elements.push(document.getElementById('in5'+i));
+    }
+  }, [tabRight,tabLeft,tabUp,tabDown]);
 
   const initList = () => setList(words);
   const updateList = (g,n) => {

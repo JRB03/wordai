@@ -3,9 +3,11 @@ import {useState} from 'react';
 
 const Keyboard = (props) => {
 
-  const keyHit = (e,key,inEl) => {
+  const keyHit = (e,key) => {
     e.preventDefault();
-    inEl.focus();
+
+    let kevent = new CustomEvent("keyboard",{ detail:{key:key,act:document.activeElement.id} });
+    document.dispatchEvent(kevent);
   }
 
   const setColor = (l) => {
@@ -26,40 +28,68 @@ const Keyboard = (props) => {
   return (
     <div id="keyboard">
           <div className="row">
-            <button style={{backgroundColor: setColor('q')}} disabled>q</button>
-            <button style={{backgroundColor: setColor('w')}} disabled>w</button>
-            <button style={{backgroundColor: setColor('e')}} disabled>e</button>
-            <button style={{backgroundColor: setColor('r')}} disabled>r</button>
-            <button style={{backgroundColor: setColor('t')}} disabled>t</button>
-            <button style={{backgroundColor: setColor('y')}} disabled>y</button>
-            <button style={{backgroundColor: setColor('u')}} disabled>u</button>
-            <button style={{backgroundColor: setColor('i')}} disabled>i</button>
-            <button style={{backgroundColor: setColor('o')}} disabled>o</button>
-            <button style={{backgroundColor: setColor('p')}} disabled>p</button>
+            <button style={{backgroundColor: setColor('q')}} 
+              onMouseDown = {e => keyHit(e,'q')}>q</button>
+            <button style={{backgroundColor: setColor('w')}} 
+              onMouseDown = {e => keyHit(e,'w')}>w</button>
+            <button style={{backgroundColor: setColor('e')}} 
+              onMouseDown = {e => keyHit(e,'e')}>e</button>
+            <button style={{backgroundColor: setColor('r')}} 
+              onMouseDown = {e => keyHit(e,'r')}>r</button>
+            <button style={{backgroundColor: setColor('t')}} 
+              onMouseDown = {e => keyHit(e,'t')}>t</button>
+            <button style={{backgroundColor: setColor('y')}} 
+              onMouseDown = {e => keyHit(e,'y')}>y</button>
+            <button style={{backgroundColor: setColor('u')}} 
+              onMouseDown = {e => keyHit(e,'u')}>u</button>
+            <button style={{backgroundColor: setColor('i')}} 
+              onMouseDown = {e => keyHit(e,'i')}>i</button>
+            <button style={{backgroundColor: setColor('o')}} 
+              onMouseDown = {e => keyHit(e,'o')}>o</button>
+            <button style={{backgroundColor: setColor('p')}} 
+              onMouseDown = {e => keyHit(e,'p')}>p</button>
           </div>
           <div className="row">
             <div className="spacer half"></div>
-            <button style={{backgroundColor: setColor('a')}} disabled>a</button>
-            <button style={{backgroundColor: setColor('s')}} disabled>s</button>
-            <button style={{backgroundColor: setColor('d')}} disabled>d</button>
-            <button style={{backgroundColor: setColor('f')}} disabled>f</button>
-            <button style={{backgroundColor: setColor('g')}} disabled>g</button>
-            <button style={{backgroundColor: setColor('h')}} disabled>h</button>
-            <button style={{backgroundColor: setColor('j')}} disabled>j</button>
-            <button style={{backgroundColor: setColor('k')}} disabled>k</button>
-            <button style={{backgroundColor: setColor('l')}} disabled>l</button>
+            <button style={{backgroundColor: setColor('a')}} 
+              onMouseDown = {e => keyHit(e,'a')}>a</button>
+            <button style={{backgroundColor: setColor('s')}} 
+              onMouseDown = {e => keyHit(e,'s')}>s</button>
+            <button style={{backgroundColor: setColor('d')}} 
+              onMouseDown = {e => keyHit(e,'d')}>d</button>
+            <button style={{backgroundColor: setColor('f')}} 
+              onMouseDown = {e => keyHit(e,'f')}>f</button>
+            <button style={{backgroundColor: setColor('g')}} 
+              onMouseDown = {e => keyHit(e,'g')}>g</button>
+            <button style={{backgroundColor: setColor('h')}} 
+              onMouseDown = {e => keyHit(e,'h')}>h</button>
+            <button style={{backgroundColor: setColor('j')}} 
+              onMouseDown = {e => keyHit(e,'j')}>j</button>
+            <button style={{backgroundColor: setColor('k')}} 
+              onMouseDown = {e => keyHit(e,'k')}>k</button>
+            <button style={{backgroundColor: setColor('l')}} 
+              onMouseDown = {e => keyHit(e,'l')}>l</button>
             <div className="spacer half"></div>
           </div>
           <div className="row">
-            <button data-key="↵" className="one-and-a-half" disabled>enter</button>
-            <button style={{backgroundColor: setColor('z')}} disabled>z</button>
-            <button style={{backgroundColor: setColor('x')}} disabled>x</button>
-            <button style={{backgroundColor: setColor('c')}} disabled>c</button>
-            <button style={{backgroundColor: setColor('v')}} disabled>v</button>
-            <button style={{backgroundColor: setColor('b')}} disabled>b</button>
-            <button style={{backgroundColor: setColor('n')}} disabled>n</button>
-            <button style={{backgroundColor: setColor('m')}} disabled>m</button>
-            <button data-key="←" className="one" disabled>⌫</button>
+            <button data-key="↵" className="one-and-a-half" 
+              disabled>    </button>
+            <button style={{backgroundColor: setColor('z')}} 
+              onMouseDown = {e => keyHit(e,'z')}>z</button>
+            <button style={{backgroundColor: setColor('x')}} 
+              onMouseDown = {e => keyHit(e,'x')}>x</button>
+            <button style={{backgroundColor: setColor('c')}} 
+              onMouseDown = {e => keyHit(e,'c')}>c</button>
+            <button style={{backgroundColor: setColor('v')}} 
+              onMouseDown = {e => keyHit(e,'v')}>v</button>
+            <button style={{backgroundColor: setColor('b')}} 
+              onMouseDown = {e => keyHit(e,'b')}>b</button>
+            <button style={{backgroundColor: setColor('n')}} 
+              onMouseDown = {e => keyHit(e,'n')}>n</button>
+            <button style={{backgroundColor: setColor('m')}} 
+              onMouseDown = {e => keyHit(e,'m')}>m</button>
+            <button data-key="←" className="one" 
+              onMouseDown = {e => keyHit(e,'Backspace')}>⌫</button>
           </div>
         </div>
   )

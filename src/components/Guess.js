@@ -2,6 +2,7 @@ import '../style/Guess.css';
 import { useState, useEffect } from 'react';
 
 import words from '../pop/words.js';
+import { wait } from '@testing-library/user-event/dist/utils';
 
 const Guess = (props) => {
    const [l1,setL1] = useState({l:' ',c:0});
@@ -11,39 +12,39 @@ const Guess = (props) => {
    const [l5,setL5] = useState({l:' ',c:0});
 
    const updateLetter = (l,e) => {
-      if( l < 6 && (e.key === 'Enter' || e.key === ' ')) {
-         updateColor(l);
-         return;
-      }
-      if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
-      props.initList();
-      switch(l) {
-        case 1:
-          if(e.key === 'Backspace') setL1({c:0,l:' '});
-          else setL1({c:l1.c,l:e.key});
-          break;
-        case 2:
-          if(e.key == 'Backspace' && l2.l === ' ') props.untab();
-          if(e.key === 'Backspace') setL2({c:0,l:' '});
-          else setL2({c:l2.c,l:e.key});
-          break;
-        case 3:
-          if(e.key == 'Backspace' && l3.l === ' ') props.untab();
-          if(e.key === 'Backspace') setL3({c:0,l:' '});
-          else setL3({c:l3.c,l:e.key});
-          break;
-        case 4:
-          if(e.key == 'Backspace' && l4.l === ' ') props.untab();
-          if(e.key === 'Backspace') setL4({c:0,l:' '});
-          else setL4({c:l4.c,l:e.key});
-          break;
-        case 5:
-          if(e.key == 'Backspace' && l5.l === ' ') props.untab();
-          if(e.key === 'Backspace') setL5({c:0,l:' '});
-          else setL5({c:l5.c,l:e.key});
-          break;
-      }
-      if(!(e.key == 'Backspace')) props.tab();
+    if( l < 6 && (e.key == 'Enter' || e.key === ' ')) {
+      updateColor(l);
+      return;
+    }
+    if(!(e.key === 'Backspace' || ( e.which >= 65 && e.which <= 90 ) )) return;
+    props.initList();
+    switch(l) {
+      case 1:
+        if(e.key === 'Backspace') setL1({c:0,l:' '});
+        else setL1({c:l1.c,l:e.key});
+        break;
+      case 2:
+        if(e.key == 'Backspace' && l2.l === ' ') props.untab();
+        if(e.key === 'Backspace') setL2({c:0,l:' '});
+        else setL2({c:l2.c,l:e.key});
+        break;
+      case 3:
+        if(e.key == 'Backspace' && l3.l === ' ') props.untab();
+        if(e.key === 'Backspace') setL3({c:0,l:' '});
+        else setL3({c:l3.c,l:e.key});
+        break;
+      case 4:
+        if(e.key == 'Backspace' && l4.l === ' ') props.untab();
+        if(e.key === 'Backspace') setL4({c:0,l:' '});
+        else setL4({c:l4.c,l:e.key});
+        break;
+      case 5:
+        if(e.key == 'Backspace' && l5.l === ' ') props.untab();
+        if(e.key === 'Backspace') setL5({c:0,l:' '});
+        else setL5({c:l5.c,l:e.key});
+        break;
+    }
+    if(!(e.key == 'Backspace')) props.tab();
    };
 
    const updateColor = (l) => {
@@ -88,6 +89,21 @@ const Guess = (props) => {
       //update parent list
       props.updateList(guess,props.num);
    },[l1,l2,l3,l4,l5]);
+
+
+   const vkeyClick = e => {
+    let g = e.detail.act.charAt(3).charCodeAt(0)-48;
+    let l = e.detail.act.charAt(2).charCodeAt(0)-48;
+
+    let ev = {key: e.detail.key, which: (e.detail.key.charCodeAt(0)-32) };
+    if(g === props.num) updateLetter(l,ev);
+   }
+   useEffect(() => {
+    document.addEventListener("keyboard",vkeyClick);
+    return () => document.removeEventListener("keyboard",vkeyClick);
+   },[]);
+
+   
 
    return (
       <div id='in'>
