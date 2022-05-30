@@ -1,0 +1,81 @@
+#keyboard {
+   margin: 0 8px;
+   width: 420px;
+   position: absolute;
+   top: 90%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   
+   justify-content: center;
+ }
+ 
+ .row {
+   display: flex;
+   width: 300px;
+   margin: 0 auto 8px;
+   /* https://stackoverflow.com/questions/46167604/ios-html-disable-double-tap-to-zoom */
+   touch-action: manipulation;
+ }
+ 
+ button {
+   font-family: inherit;
+   font-weight: bold;
+   border: 0;
+   padding: 0;
+   margin: 0 6px 0 0;
+   height: 38px;
+   width: 20px;
+   border-radius: 4px;
+   cursor: pointer;
+   user-select: none;
+   background-color: #c9c9c9;
+   color: white;
+   flex: 1;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-transform: uppercase;
+   -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+ }
+ 
+ button.fade {
+   transition: background-color 0.1s ease, color 0.1s ease;
+ }
+ 
+ button:last-of-type {
+   margin: 0;
+ }
+ 
+ .half {
+   flex: 0.5;
+ }
+ 
+ .one {
+   flex: 1;
+ }
+ 
+ .one-and-a-half {
+   flex: 1.8;
+   font-size: 12px;
+ }
+ 
+ .two {
+   flex: 2;
+ }
+ 
+ button[data-state='correct'] {
+   background-color: var(--key-bg-correct);
+   color: var(--key-evaluated-text-color);
+ }
+ 
+ button[data-state='present'] {
+   background-color: var(--key-bg-present);
+   color: var(--key-evaluated-text-color);
+ }
+ 
+ button[data-state='absent'] {
+   background-color: var(--key-bg-absent);
+   color: var(--key-evaluated-text-color);
+ }
+ 
+ 

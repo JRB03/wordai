@@ -1,7 +1,8 @@
 import './style/App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef } from 'react';
 
 import Guess from './components/Guess.js';
+import Keyboard from './components/Keyboard.js';
 
 import words from './pop/words.js';
 import popwords from './pop/popwords.js';
@@ -21,6 +22,7 @@ import ye from './img/ye.png';
 
 
 function App() {
+  const ref = useRef();
   const [list,setList] = useState(words);
   const [guess1,setGuess1] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
   const [guess2,setGuess2] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
@@ -30,19 +32,13 @@ function App() {
 
   const numG = 3;
   const popBold = 3250; 
-  const listSize = 69;
+  const listSize = 57;
 
   const [dark, setDark] = useState(false);
   
   const elements = [];
-  for(let i = 1; i <= numG; i++) {
-    elements.push(document.getElementById('in1'+i));
-    elements.push(document.getElementById('in2'+i));
-    elements.push(document.getElementById('in3'+i));
-    elements.push(document.getElementById('in4'+i));
-    elements.push(document.getElementById('in5'+i));
-  }
-  useEffect( () => document.getElementById('in11').focus(),[])
+  const focusIn = (id) => { document.getElementById(id).focus(); }
+  useEffect( () => { focusIn('in11'); },[])
 
   const tabRight = () => {
      let i = elements.indexOf(document.activeElement);
@@ -64,6 +60,15 @@ function App() {
     if(Math.floor(i/5) <= 0) i += elements.length;
     elements[i - 5].focus();
   }
+  useEffect( () => {
+    for(let i = 1; i <= numG; i++) {
+      elements.push(document.getElementById('in1'+i));
+      elements.push(document.getElementById('in2'+i));
+      elements.push(document.getElementById('in3'+i));
+      elements.push(document.getElementById('in4'+i));
+      elements.push(document.getElementById('in5'+i));
+    }
+  }, [tabRight,tabLeft,tabUp,tabDown]);
 
   const initList = () => setList(words);
   const updateList = (g,n) => {
@@ -149,7 +154,7 @@ function App() {
     <div id='wordaI'>
       <div id='header'>
         <div id='info' onClick={() => {document.getElementById('blurb').classList.toggle('show')}}>{">info"}
-          <text id='blurb'>{blurb}</text>
+          <p id='blurb'>{blurb}</p>
         </div>
         <h1 id='title'>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
@@ -161,7 +166,7 @@ function App() {
          if(e.key === 'ArrowUp') tabUp();
          if(e.key === 'ArrowDown') tabDown();
        }}>
-        <div id='border-left' className='border'>
+        <div id='border-left' className='border' onClick={()=>focusIn('in11')}>
           <img id='bh' src ={bh}/>
           <img id='ge' src ={ge}/>
           <img id='ya' src ={ya}/>
@@ -177,16 +182,17 @@ function App() {
             <Guess id='g2' num={2} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
             <Guess id='g3' num={3} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
           </div>
-          <div id='list'>
+          <div id='list' onClick={()=>focusIn('in11')}>
             {list.slice(0,listSize).map(w => {
               let arr = popwords.slice(0,popBold);
-              if(arr.includes(w)) return <p className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
+              if(arr.includes(w)) return <p key={w} className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
               return <p className='word'>{w}</p>
             })}
           </div>
+          
         </div>
 
-        <div id='border-right' className='border'>
+        <div id='border-right' className='border' onClick={()=>focusIn('in11')}>
           <img id='ye' src={ye}/>
           <img id='bu' src={bu}/>
           <img id='gm' src ={gm} title="70 75 73 68 69 6E 20 70"/>
@@ -196,9 +202,7 @@ function App() {
           <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
         </div>
       </div>
-
-      
-      
+      <Keyboard focusEl={document.activeElement} guesses={[...guess1,...guess2,...guess3,...guess4,...guess5]}/>
     </div>
   );
 }
