@@ -101,7 +101,7 @@ const Guess = (props) => {
    useEffect(() => {
     document.addEventListener("keyboard",vkeyClick);
     return () => document.removeEventListener("keyboard",vkeyClick);
-   },[]);
+   },[l1,l2,l3,l4,l5]);
 
    
 
