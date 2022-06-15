@@ -1,7 +1,6 @@
 import '../style/Keyboard.css';
-import {useState} from 'react';
 
-const Keyboard = (props) => {
+const VirtualKeyboard = (props) => {
 
   const keyHit = (e,key) => {
     e.preventDefault();
@@ -22,6 +21,8 @@ const Keyboard = (props) => {
         return "#eed494"
       case 2:
         return "#9ac8b7";
+      default:
+        break;
     }
   }
 
@@ -73,7 +74,7 @@ const Keyboard = (props) => {
           </div>
           <div className="row">
             <button data-key="↵" className="one-and-a-half" 
-              disabled>    </button>
+              onMouseDown = {e => keyHit(e,' ')}> Color </button>
             <button style={{backgroundColor: setColor('z')}} 
               onMouseDown = {e => keyHit(e,'z')}>z</button>
             <button style={{backgroundColor: setColor('x')}} 
@@ -94,5 +95,4 @@ const Keyboard = (props) => {
         </div>
   )
 }
-
-export default Keyboard;
+export default VirtualKeyboard;

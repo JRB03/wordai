@@ -1,7 +1,7 @@
 #wordaI {
   display:flex;
   flex-flow: column;
-  justify-content: start;
+  justify-content: flex-start;
   transition: 1.5s;
   height: 100vh;
   background-color: white;
@@ -73,7 +73,7 @@
 #content {
   display:flex;
   flex-flow: column;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 #list {

@@ -1,8 +1,8 @@
 import './style/App.css';
-import { useState, useEffect ,useRef } from 'react';
+import { useState, useEffect } from 'react';
 
-import Guess from './components/Guess.js';
-import Keyboard from './components/Keyboard.js';
+import Guess from './components/GuessRow.js';
+import VirtualKeyboard from './components/VirtualKeyboard.js';
 
 import words from './pop/words.js';
 import popwords from './pop/popwords.js';
@@ -21,8 +21,7 @@ import ya from './img/ya.png';
 import ye from './img/ye.png';
 
 
-function App() {
-  const ref = useRef();
+const App = () => {
   const [list,setList] = useState(words);
   const [guess1,setGuess1] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
   const [guess2,setGuess2] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
@@ -150,6 +149,21 @@ function App() {
     setDark(!dark);
   };
 
+  const virtualKeyHit = (e,key) => {
+    e.preventDefault();
+    let kevent = new CustomEvent("keyboard",{ detail:{key:key,act:document.activeElement.id} });
+    document.dispatchEvent(kevent);
+  }
+  const wordPress = (e,word) => {
+    e.preventDefault();
+    let activeGroup = document.activeElement.id.charAt(3);
+    focusIn("in1" + activeGroup);
+
+    for(let i = 0; i < 5; i++) {
+      virtualKeyHit(e,word.charAt(i));
+    }
+  }
+
   return (
     <div id='wordaI'>
       <div id='header'>
@@ -166,7 +180,7 @@ function App() {
          if(e.key === 'ArrowUp') tabUp();
          if(e.key === 'ArrowDown') tabDown();
        }}>
-        <div id='border-left' className='border' onClick={()=>focusIn('in11')}>
+        <div id='border-left' className='border' onMouseDown={(e)=>focusIn('in11')}>
           <img id='bh' src ={bh}/>
           <img id='ge' src ={ge}/>
           <img id='ya' src ={ya}/>
@@ -182,11 +196,11 @@ function App() {
             <Guess id='g2' num={2} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
             <Guess id='g3' num={3} initList={() => initList()} updateList={(g,n) => updateList(g,n)} tab = {() => tabRight()} untab = {() => tabLeft()}/>
           </div>
-          <div id='list' onClick={()=>focusIn('in11')}>
+          <div id='list'>
             {list.slice(0,listSize).map(w => {
               let arr = popwords.slice(0,popBold);
-              if(arr.includes(w)) return <p key={w} className='word' style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
-              return <p className='word'>{w}</p>
+              if(arr.includes(w)) return <p key={w} className='word' onMouseDown= { (e) => wordPress(e,w)} style={{fontWeight: (dark) ? ("700") : ('600')}}>{w}</p>
+              return <p key={w} className='word' onMouseDown= { e => wordPress(e,w)} >{w}</p>
             })}
           </div>
           
@@ -202,7 +216,7 @@ function App() {
           <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
         </div>
       </div>
-      <Keyboard focusEl={document.activeElement} guesses={[...guess1,...guess2,...guess3,...guess4,...guess5]}/>
+      <VirtualKeyboard focusEl={document.activeElement} guesses={[...guess1,...guess2,...guess3,...guess4,...guess5]}/>
     </div>
   );
 }
