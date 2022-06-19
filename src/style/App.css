@@ -83,6 +83,7 @@
   justify-content: space-around;
   width: 420px;
 } .word {
+  cursor: pointer;
   margin: 10px;
   transition: .5s;
   text-transform: uppercase;
