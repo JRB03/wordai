@@ -2,10 +2,11 @@
   display:flex;
   flex-flow: column;
   justify-content: flex-start;
-  transition: 1.5s;
+  transition: .75s;
   height: 100vh;
   background-color: white;
-} #wordaI.dark {
+} .dark #wordaI {
+  transition: 1.5s;
   background-color: rgb(65, 65, 65);
 }
 
@@ -16,14 +17,14 @@
 } #title {
   color: rgba(0, 0, 0, 0.675);
   margin-bottom: 0px;
-  transition: 1.5s;
+  transition: 0.75s;
 } #header a {
   font-size: small;
   font-family: monospace;
   color:#afafaf;
   margin-top: 20px;
   margin-right: 20px;
-} #title.dark {
+} .dark #title {
   color: rgb(222, 222, 222);
 }
 
@@ -83,9 +84,10 @@
   width: 420px;
 } .word {
   margin: 10px;
+  transition: .5s;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.775);
-} #list.dark .word{
+} .dark #list .word{
   color: white;
 }
 
@@ -114,7 +116,6 @@ img {
 } #bh {
   margin-left: 80px;
   animation: float 5.2s ease-in-out infinite; 
-  transition: 2s;
 } #ge {
   margin-right: 150px;
   animation: float 7s ease-in-out infinite;
@@ -166,7 +167,7 @@ img {
   bottom:20px;
   right: 10px;
   
-} #mode.dark {
+} .dark #mode {
   color: #afafaf;
 }
 

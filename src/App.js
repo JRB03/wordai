@@ -28,27 +28,40 @@ const App = () => {
   const [guess3,setGuess3] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
   const [guess4,setGuess4] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
   const [guess5,setGuess5] = useState([{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0},{l:' ',c:0}]);
+  const [dark, setDark] = useState(false);
 
   const numG = 3;
   const popBold = 3250; 
   const listSize = 57;
-
-  const [dark, setDark] = useState(false);
   
-  const elements = [];
   const focusIn = (id) => { document.getElementById(id).focus(); }
-  useEffect( () => { focusIn('in11'); },[])
+  useEffect( () => { 
+    const storedPreference = localStorage.getItem('prefersDarkMode');
+    if(storedPreference) setDark(JSON.parse(storedPreference));
+    focusIn('in11'); 
+  },[])
 
+//focus
+  const elements = [];
+  useEffect( () => {
+    for(let i = 1; i <= numG; i++) {
+      elements.push(document.getElementById('in1'+i));
+      elements.push(document.getElementById('in2'+i));
+      elements.push(document.getElementById('in3'+i));
+      elements.push(document.getElementById('in4'+i));
+      elements.push(document.getElementById('in5'+i));
+    }
+  });
   const tabRight = () => {
      let i = elements.indexOf(document.activeElement);
      if(i >= elements.length-1) i = -1;
      elements[i + 1].focus();
-   } 
-   const tabLeft = () => {
+  } 
+  const tabLeft = () => {
      let i = elements.indexOf(document.activeElement);
      if(i <= 0) i = elements.length;
      elements[i - 1].focus();
-   }
+  }
   const tabDown = () => {
     let i = elements.indexOf(document.activeElement);
     if(Math.floor(i/5) >= numG-1) i = i%5-5;
@@ -59,16 +72,8 @@ const App = () => {
     if(Math.floor(i/5) <= 0) i += elements.length;
     elements[i - 5].focus();
   }
-  useEffect( () => {
-    for(let i = 1; i <= numG; i++) {
-      elements.push(document.getElementById('in1'+i));
-      elements.push(document.getElementById('in2'+i));
-      elements.push(document.getElementById('in3'+i));
-      elements.push(document.getElementById('in4'+i));
-      elements.push(document.getElementById('in5'+i));
-    }
-  }, [tabRight,tabLeft,tabUp,tabDown]);
 
+//list generating
   const initList = () => setList(words);
   const updateList = (g,n) => {
     //update guess lists
@@ -98,6 +103,8 @@ const App = () => {
       case 5:
         g5 = g;
         setGuess5(g);
+        break;
+      default:
         break;
     }
     guess = [...g1,...g2,...g3,...g4,...g5];
@@ -132,6 +139,7 @@ const App = () => {
     setList(arr);
   }
 
+//info
   let blurb = "Welcome!                                                   x\n" +
     "Word.ai will take your Wordle guesses/input,\n" +
     " and give you the best options for your next guess!\n\n" +
@@ -141,14 +149,20 @@ const App = () => {
     "The bold words are more popular\n (and so potentially more likely to be the Wordle).\n\n"+
     "This github project is linked at the top right of the page."
 
-  const modeToggle = () => {
-    document.getElementById('wordaI').classList.toggle('dark');
-    document.getElementById('title').classList.toggle('dark');
-    document.getElementById('list').classList.toggle('dark');
-    document.getElementById('mode').classList.toggle('dark');
-    setDark(!dark);
-  };
+//dark mode
+  useEffect(() => {
+    if(dark) {
+      localStorage.setItem('prefersDarkMode','true');
+      document.body.classList.add('dark');
+    }
+    else {
+      localStorage.setItem('prefersDarkMode','false');
+      document.body.classList.remove('dark');
+    }
+    
+  },[dark])
 
+//word press
   const virtualKeyHit = (e,key) => {
     e.preventDefault();
     let kevent = new CustomEvent("keyboard",{ detail:{key:key,act:document.activeElement.id} });
@@ -162,6 +176,7 @@ const App = () => {
     for(let i = 0; i < 5; i++) {
       virtualKeyHit(e,word.charAt(i));
     }
+    tabUp();
   }
 
   return (
@@ -173,7 +188,6 @@ const App = () => {
         <h1 id='title'>Word.aI</h1>
         <a href='https://github.com/JRB03/wordai'>@JRB03 '22</a>
       </div>
-
       <div id='page' onKeyDown={e => {
          if(e.key === 'ArrowLeft') tabLeft();
          if(e.key === 'ArrowRight') tabRight();
@@ -188,7 +202,6 @@ const App = () => {
           <img id='bj' src ={bj} title="Ɛ>"/>
           <img id='gg' src ={gg}/>
         </div>
-
         <div id='content' >
          <label>[Enter]</label>
           <div id='boxes' >
@@ -205,7 +218,6 @@ const App = () => {
           </div>
           
         </div>
-
         <div id='border-right' className='border' onClick={()=>focusIn('in11')}>
           <img id='ye' src={ye}/>
           <img id='bu' src={bu}/>
@@ -213,7 +225,7 @@ const App = () => {
           <img id='bw' src ={bw}/>
           <img id='gs' src ={gs}/>
           <img id='br' src ={br} title="<3"/>
-          <a id='mode' onClick={() => modeToggle()}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
+          <a id='mode' onClick={() => setDark(!dark)}>{(dark) ? ('> ☀ <') : ('> ☾ <')}</a>
         </div>
       </div>
       <VirtualKeyboard focusEl={document.activeElement} guesses={[...guess1,...guess2,...guess3,...guess4,...guess5]}/>
