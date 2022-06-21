@@ -146,8 +146,10 @@ const App = () => {
     "Use [tab], [←] [→] [↑] [↓], or click to select a box.\n" +
     "Use your keyboard to type in a letter.\n" +
     "Use [Enter], [Space], or click to change a box's color.\n\n" +
+    "Click on a suggested word to auto fill into the row\n you're selecting.\n\n" +
     "The bold words are more popular\n (and so potentially more likely to be the Wordle).\n\n"+
-    "This github project is linked at the top right of the page."
+    "This github project is linked at the top right of the page.\n" +
+    "Enjoy! <3"
 
 //dark mode
   useEffect(() => {
